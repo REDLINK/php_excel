@@ -607,7 +607,7 @@ class ExcelSheet {
 	* @param int $row 0-based row number
 	* @param int $column 0-based column number
 	* @param ExcelFormat $format (optional, default=null)
-	* @return
+	* @return mixed
 	*/
 	public function read($row, $column, $format = null) {
 	} // read

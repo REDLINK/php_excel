@@ -3366,7 +3366,7 @@ EXCEL_METHOD(Sheet, setName)
 /* }}} */
 
 #if LIBXL_VERSION >= 0x03010000
-/* {{{ proto bool ExcelSheet::setNamedRange(string name, int row, int col, int to_row, int to_col)
+/* {{{ proto bool ExcelSheet::setNamedRange(string name, int row, int to_row, int col, int to_col)
 	Create a named range */
 EXCEL_METHOD(Sheet, setNamedRange)
 {
@@ -3376,7 +3376,7 @@ EXCEL_METHOD(Sheet, setNamedRange)
 	char *name;
 	int name_len;
 
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "sllll", &name, &name_len, &row, &col, &to_row, &to_col) == FAILURE) {
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "sllll", &name, &name_len, &row, &to_row, &col, &to_col) == FAILURE) {
 		RETURN_FALSE;
 	}
 
@@ -3394,7 +3394,7 @@ EXCEL_METHOD(Sheet, setNamedRange)
 
 	SHEET_FROM_OBJECT(sheet, object);
 
-	RETURN_BOOL(xlSheetSetNamedRange(sheet, name, row, col, to_row, to_col));
+	RETURN_BOOL(xlSheetSetNamedRange(sheet, name, row, to_row, col, to_col));
 }
 /* }}} */
 
@@ -4764,8 +4764,8 @@ PHP_EXCEL_ARGINFO
 ZEND_BEGIN_ARG_INFO_EX(arginfo_Sheet_setNamedRange, 0, 0, 5)
 	ZEND_ARG_INFO(0, name)
 	ZEND_ARG_INFO(0, row)
-	ZEND_ARG_INFO(0, col)
 	ZEND_ARG_INFO(0, to_row)
+	ZEND_ARG_INFO(0, col)
 	ZEND_ARG_INFO(0, to_col)
 ZEND_END_ARG_INFO()
 
