@@ -1188,7 +1188,7 @@ EXCEL_METHOD(Book, setActiveSheet)
 	BOOK_FROM_OBJECT(book, object);
 
 	xlBookSetActiveSheet(book, id);
-	RETURN_BOOL(id != xlBookActiveSheet(book));
+	RETURN_BOOL(id == xlBookActiveSheet(book));
 }
 /* }}} */
 
@@ -3587,8 +3587,8 @@ EXCEL_METHOD(Sheet, getNamedRange)
 		array_init(return_value);
 		add_assoc_long(return_value, "row_first", rf);
 		add_assoc_long(return_value, "row_last", rl);
-		add_assoc_long(return_value, "col_first", cl);
-		add_assoc_long(return_value, "col_last", cf);
+		add_assoc_long(return_value, "col_first", cf);
+		add_assoc_long(return_value, "col_last", cl);
 	} else {
 		RETURN_FALSE;
 	}
@@ -3612,8 +3612,8 @@ EXCEL_METHOD(Sheet, getIndexRange)
 		array_init(return_value);
 		add_assoc_long(return_value, "row_first", rf);
 		add_assoc_long(return_value, "row_last", rl);
-		add_assoc_long(return_value, "col_first", cl);
-		add_assoc_long(return_value, "col_last", cf);
+		add_assoc_long(return_value, "col_first", cf);
+		add_assoc_long(return_value, "col_last", cl);
 	} else {
 		RETURN_FALSE;
 	}

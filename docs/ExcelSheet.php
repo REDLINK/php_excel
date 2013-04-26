@@ -243,12 +243,12 @@ class ExcelSheet {
 	* Copy a cell from one location to another
 	*
 	* @param int $row_from 0-based row number
-	* @param int $column_from 0-based column number
 	* @param int $row_to 0-based row number
+	* @param int $column_from 0-based column number
 	* @param int $column_to 0-based column number
 	* @return void
 	*/
-	public function copy($row_from, $column_from, $row_to, $column_to) {
+	public function copy($row_from, $row_to, $column_from, $column_to) {
 	} // copy
 
 	/**
@@ -854,17 +854,26 @@ class ExcelSheet {
 	} // setName
 
 	/**
+	* Gets the coordinates for the named range
+	*
+	* @param string $name
+	* @return array
+	*/
+	public function getNamedRange($name) {
+	}
+	
+	/**
 	* Create a named range
 	*
 	* @see ExcelSheet::delNamedRange()
 	* @param string $name
 	* @param int $row_from 0-based row number
-	* @param int $column_from 0-based column number
 	* @param int $row_to 0-based row number
+	* @param int $column_from 0-based column number
 	* @param int $column_to 0-based column number
 	* @return bool
 	*/
-	public function setNamedRange($name, $row_from, $column_from, $row_to, $column_to) {
+	public function setNamedRange($name, $row_from, $row_to, $column_from, $column_to) {
 	} // setNamedRange
 
 	/**
