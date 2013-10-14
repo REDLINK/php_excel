@@ -1984,6 +1984,17 @@ EXCEL_METHOD(Sheet, setCellFormat)
 
 static zend_bool php_excel_read_cell(int row, int col, zval *val, SheetHandle sheet, BookHandle book, FormatHandle *format)
 {
+	const char *s;
+	if (xlSheetIsFormula(sheet, row, col)) {
+		s = xlSheetReadFormula(sheet, row, col, format);
+		if (s) {
+			ZVAL_STRING(val, (char *)s, 1);
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
 	switch (xlSheetCellType(sheet, row, col)) {
 		case CELLTYPE_EMPTY:
 			ZVAL_EMPTY_STRING(val);
@@ -2018,12 +2029,7 @@ static zend_bool php_excel_read_cell(int row, int col, zval *val, SheetHandle sh
 		}
 
 		case CELLTYPE_STRING: {
-			const char *s;
-			if (xlSheetIsFormula(sheet, row, col)) {
-				s = xlSheetReadFormula(sheet, row, col, format);
-			} else {
-				s = xlSheetReadStr(sheet, row, col, format);
-			}
+			s = xlSheetReadStr(sheet, row, col, format);
 			if (s) {
 				ZVAL_STRING(val, (char *)s, 1);
 				return 1;
